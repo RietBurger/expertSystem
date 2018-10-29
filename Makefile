@@ -13,7 +13,8 @@ SRCS =	main.c \
 		free.c \
 		save_find.c \
 		save_given.c\
-		save_values.c \
+		save_values.c\
+		setValues.c
 
 		
 

@@ -36,12 +36,28 @@ typedef struct			s_values
 	struct s_values		*next;
 }						t_values;
 
+typedef struct			s_found
+{
+	char				valFnd;
+	int					stateBool;
+	struct s_found		*next;
+}						t_found;
+
+//////////
+//				NEXT STEP:
+//				MEASURE: while t_values->next if (implied == 1) 
+//				valG == val
+//				set values.stateBool = 1
+//				set values.found = 1; - when adding to t_given.
+//
+/////////
 typedef struct			s_g
 {
 	t_stmts				*stmts;
 	t_find				*find;
 	t_given				*given;
 	t_values			*values;
+	t_found				*found;
 	char				*gnl;
 }						t_g;
 
@@ -49,7 +65,8 @@ t_stmts					*read_file(t_g *all);
 t_find					*save_find(t_g *all);
 t_given					*save_given(t_g *all);
 t_values				*save_values(t_g *all);
-
+void					setValues(t_g *all);
+void					matchValues(t_g *all);
 //void					save_piece(t_input *node, t_g *all);
 //t_board					*save_board(t_input *node, t_g *all);
 

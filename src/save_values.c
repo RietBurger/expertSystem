@@ -46,6 +46,7 @@ t_values	*save_values(t_g *all)
 
 			i++;
 		}
+		node->next = NULL;
 		free_args(arr);
 		stmt_head = stmt_head->next;
 	}

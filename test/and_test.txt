@@ -3,4 +3,4 @@ D | E => B
 B => C
 
 ?A
-=DBCE
+=DE
