@@ -10,6 +10,9 @@ INC_DIR = -I inc/
 
 SRCS =	main.c \
 	  	read_file.c \
+		sort_info.c \
+		ft_symbol.c \
+		ft_match.c \
 		save_given.c \
 		free.c \
 
