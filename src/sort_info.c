@@ -3,9 +3,10 @@
 void		sort_info(t_g *all)
 {
 	t_stmts *stmt_head;
-	int fcount;
+	int fcount, findc;
 
 	fcount = 1;
+	findc = 1;
 	stmt_head = all->stmts;
 	while (all->stmts->next)
 	{
@@ -15,16 +16,13 @@ void		sort_info(t_g *all)
 			while (all->facts[fcount])
 				fcount++;
 			all->fcount = fcount;
-			ft_putstr("all->facts: ");
-			ft_putendl(all->facts);
-			ft_putstr("all->fcount: ");
-			ft_putnbr(all->fcount);
-			ft_putchar('\n');
 
 		} else if (all->stmts->stmt[0] == '?') {
 			all->find = ft_strsplit(all->stmts->stmt, '?')[0];
-			ft_putstr("all->find: ");
-			ft_putendl(all->find);
+			while (all->find[findc])
+				findc++;
+			all->results = ft_strsplit(all->stmts->stmt, '?')[0];
+			all->findc = findc;
 		} else if (all->stmts->stmt[0] == '#') {
 			//	ft_putendl("this is a comment");
 		} else {
@@ -32,11 +30,7 @@ void		sort_info(t_g *all)
 			if (all->stmts->data != NULL)
 			{
 				all->stmts->data = ft_strsplit(all->stmts->stmt, '=')[0];
-				//ft_putstr("all->stmts->data: ");
-				//ft_putendl(all->stmts->data);
 				all->stmts->decision = ft_strsplit(all->stmts->stmt, '>')[1];
-				//ft_putstr("all->stmts->decision: ");
-				//ft_putendl(all->stmts->decision);
 			}
 		}
 		all->stmts = all->stmts->next;

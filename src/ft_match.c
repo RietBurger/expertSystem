@@ -13,9 +13,6 @@ char		ft_match(char *temp, t_g *all)
 			j++;
 		if (temp[j] == all->facts[fpos])
 		{
-			ft_putstr("MaTcH on fpos: ");
-			ft_putchar(all->facts[fpos]);
-			ft_putchar('\n');
 			return ('t');
 		}
 		fpos++;

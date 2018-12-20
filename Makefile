@@ -14,6 +14,7 @@ SRCS =	main.c \
 		ft_symbol.c \
 		ft_match.c \
 		save_given.c \
+		ft_undefined.c \
 		free.c \
 
 		

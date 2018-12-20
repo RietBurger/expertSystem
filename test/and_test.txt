@@ -1,6 +1,6 @@
 B + C => A
 D | E => B
-B + E => C
-
-?AB
+B => C
+F + E => G 
+?AG
 =DE
