@@ -1,5 +1,5 @@
 #include "expert.h"
-
+/*
 void	add_values_to_given(t_g *all)
 {
 	t_given		*gnode;
@@ -31,7 +31,7 @@ void	add_values_to_given(t_g *all)
 	}
 	gnode->next = NULL;
 }
-
+*/
 int		main(void)
 {
 	t_g all;
@@ -39,27 +39,9 @@ int		main(void)
 	all.stmts = NULL; 
 	ft_putendl("starting main");
 	all.stmts = read_file(&all);
+	sort_info(&all);
+	ft_find(&all);
 
-	all.find = save_find(&all);
-	all.given = save_given(&all);
-	all.values = save_values(&all);
-	setValues(&all);
-	matchValues(&all);
-	add_values_to_given(&all);
-//	impValues(&all);
-//	all.find = save_vals(&all);	
-
-		while (all.given->next)
-		{
-				ft_putendl(&all.given->valG);
-				ft_putnbr(all.given->stateBool);
-			//ft_putendl(all.find->valF); 
-			//ft_putendl(all.values->val); 
-				ft_putchar('\n');
-			all.given = all.given->next; 
-		}
-		
-		free_stmts(all.stmts);
-	 //free_all(all.stmts, all.data); 
+	free_stmts(all.stmts);
 	return (0);
 }

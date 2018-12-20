@@ -9,7 +9,7 @@ void	free_stmts(t_stmts *b)
 		tmp_l = b;
 		b = b->next;
 		free(tmp_l->stmt);
-		free(tmp_l->valImp);
+		free(tmp_l->decision);
 		free(tmp_l);
 	}
 	free(b);

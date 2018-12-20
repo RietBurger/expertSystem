@@ -10,11 +10,8 @@ INC_DIR = -I inc/
 
 SRCS =	main.c \
 	  	read_file.c \
+		save_given.c \
 		free.c \
-		save_find.c \
-		save_given.c\
-		save_values.c\
-		setValues.c
 
 		
 
@@ -23,7 +20,6 @@ SRC = $(addprefix $(SRC_DIR), $(SRCS))
 OBJ = $(SRCS:.c=.o)
 
 $(NAME):
-	make re -C libft/
 	$(CC) $(INC_DIR) -c $(SRC)
 	$(CC) -o $(NAME) $(OBJ) -L libft/ -lft
 	make clean
