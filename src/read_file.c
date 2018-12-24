@@ -34,32 +34,37 @@ t_stmts			*read_file(t_g *all)
 	i = 0;
 	while (get_next_line(0, &all->gnl))
 	{
-		if (head == NULL)
-		{
-			head = (t_stmts *)ft_memalloc(sizeof(t_stmts));
-			node = head;
-		}
-		//to trim str... or not..?
-		node->stmt = trimstr(all->gnl);
-		//temp1 = trimstr(all->gnl);
-		temp = ft_strchr(node->stmt, '#');
-		if (temp == NULL)
-			node->stmt = all->gnl;
-		else
-		{
-			node->stmt = ft_strsplit(node->stmt, '#')[0];
-		}
-		node->nodenr = i; // number the node (for future use)
 
-		// to test
-		//ft_putstr("node->stmt: ");
-		//ft_putendl(node->stmt);
-		i++;
-		node->next = (t_stmts *)ft_memalloc(sizeof(t_stmts));
-		node = node->next;
+		if (all->gnl[0] != '#')
+		{
+			if (head == NULL)
+			{
+				head = (t_stmts *)ft_memalloc(sizeof(t_stmts));
+				node = head;
+			}
+			//to trim str... or not..?
+			node->stmt = trimstr(all->gnl);
+			//temp1 = trimstr(all->gnl);
+			temp = ft_strchr(node->stmt, '#');
+			if (temp == NULL)
+				node->stmt = all->gnl;
+			else
+			{
+				node->stmt = ft_strsplit(node->stmt, '#')[0];
+			}
+			node->nodenr = i; // number the node (for future use)
+
+			// to test
+			//ft_putstr("node->stmt: ");
+			//ft_putendl(node->stmt);
+			i++;
+
+			node->next = (t_stmts *)ft_memalloc(sizeof(t_stmts));
+			node = node->next;
+		}
 	}
 	node->next = NULL; //end list
-	ft_putendl("file read completed successfully");
+	//	ft_putendl("file read completed successfully");
 	return (head); //return the head
 }
 

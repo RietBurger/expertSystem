@@ -10,25 +10,13 @@ void	free_stmts(t_stmts *b)
 		b = b->next;
 		free(tmp_l->stmt);
 		free(tmp_l->decision);
+		free(tmp_l->data);
 		free(tmp_l);
 	}
 	free(b);
 }
 
 /*
-void	free_find(t_find *i)
-{
-	t_find	*tmp_i;
-
-	while (i != NULL)
-	{
-		tmp_i = i;
-		i = i->next;
-		free(tmp_i->str);
-		free(tmp_i);
-	}
-	free(i);
-}
 
 void	free_all(t_board *b, t_input *i)
 {

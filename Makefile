@@ -2,7 +2,7 @@ NAME = expert
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 SRC_DIR = ./src/
 
@@ -15,6 +15,7 @@ SRCS =	main.c \
 		ft_match.c \
 		save_given.c \
 		ft_undefined.c \
+		ft_main_output.c \
 		free.c \
 
 		

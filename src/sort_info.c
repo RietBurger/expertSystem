@@ -30,12 +30,16 @@ void		sort_info(t_g *all)
 			if (all->stmts->data != NULL)
 			{
 				all->stmts->data = ft_strsplit(all->stmts->stmt, '=')[0];
+			//	ft_putstr("Data: ");
+			//	ft_putendl(all->stmts->data);
 				all->stmts->decision = ft_strsplit(all->stmts->stmt, '>')[1];
+			//	ft_putstr("Decision: ");
+			//	ft_putendl(all->stmts->decision);
 			}
 		}
 		all->stmts = all->stmts->next;
 	}
 	all->stmts = stmt_head;
-	ft_putendl("info sorted successfully");
+//	ft_putendl("info sorted successfully");
 }
 

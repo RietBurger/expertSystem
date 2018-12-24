@@ -1,0 +1,14 @@
+A | B + C => E
+(F | G) + H => E
+= #E should be false
+#=A #E true
+#=B #E false
+#=C #E false
+#=AC #E true
+#=BC #E true
+#=F #E false
+#=G #E false
+#=H #E false
+#=FH #E true
+#=GH #E true
+?E 

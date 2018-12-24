@@ -11,7 +11,25 @@ char		ft_match(char *temp, t_g *all)
 		j = 0;
 		while (temp[j] == ' ')
 			j++;
+
 		if (temp[j] == all->facts[fpos])
+		{
+			return ('t');
+		}
+		fpos++;
+	}
+	return ('f');
+}
+
+char		ft_match_chr(char temp, t_g *all)
+{
+	int fmax, fpos;
+
+	fmax = all->fcount;
+	fpos = 0;
+	while (fpos <= fmax)
+	{
+		if (temp == all->facts[fpos])
 		{
 			return ('t');
 		}
