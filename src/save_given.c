@@ -3,12 +3,11 @@
 void	ft_find(t_g *all)
 {
 	t_stmts *head;
-	int i, j, spcount, cnt, stcount, loops, decisionc, fcount;
-	
+	int i, cnt, stcount, loops, decisionc, fcount;
+
 	i = 0;
 	cnt = 0;
 	stcount = 0;
-	spcount = 0;
 	fcount = 0;
 	loops = 0;
 	decisionc = 0;
@@ -21,15 +20,19 @@ void	ft_find(t_g *all)
 			fcount++;
 			while (all->stmts->next && all->stmts->decision && all->stmts->data)
 			{
+				//ft_putstr("this it decision[1]: ");
+				//ft_putchar(all->stmts->decision[1]);
+				//ft_putchar('\n');
 				decisionc = ft_strlen(all->stmts->decision);
-				if (all->find[i] == all->stmts->decision[1])
+				if (all->find[i] == all->stmts->decision[1]) //NOT CATERING FOR IF FIND IS NOWHERE IN DECISIONS...
 				{
 					ft_decision_found(all, all->stmts);
 				}
-				if (decisionc > 2)
+				if (decisionc > 2) // this means 2 decision vars
 				{
 					stcount = ft_match_chr(all->stmts->decision[1], all);
-					if (stcount == 't')
+					//find second symbol... currently based on assumption its a +
+					if (stcount == 't') //if decision var 1 is true, then so is 2nd one
 					{
 						ft_new_fact(all, all->stmts->decision[5]);
 						//ft_remove_decision(all, all->stmts->decision[1]); // this is character sent in last
@@ -57,14 +60,36 @@ void	ft_decision_found(t_g *all, t_stmts *curr_stmt)
 {
 	char **splits;
 	char split1, split2;
-
+	char *notOp, *notOpDa, *notOpDe;
 	all->stmts->operatorSym = ft_symbol(all->stmts->data);
 	splits = ft_strsplit(all->stmts->data, all->stmts->operatorSym);
 	if (splits != NULL)
 	{
+		//ft_putstr("this is splits[0] in decision_found: ");
+		//ft_putendl(splits[0]);
 		split1 = ft_match(splits[0], all);
 		if (splits[1] != NULL)
 			split2 = ft_match(splits[1], all);
+	/*
+		notOp = ft_strchr(all->stmts->stmt, '!');
+		if (notOp)
+		{
+			ft_putendl(notOp);
+			notOpDa = ft_strchr(all->stmts->data, '!');
+			notOpDe = ft_strchr(all->stmts->decision, '!');
+			if (notOpDe)
+			{
+				ft_putstr("notOpDe: ");
+				ft_putendl(notOpDe);
+			}
+			if (notOpDa)
+			{
+				ft_putstr("notOpDa: ");
+				ft_putendl(notOpDa);
+			}
+			
+		}
+	*/	
 		if (all->stmts->operatorSym == '+')
 		{
 			if (split1 == 't' && split2 == 't') {
@@ -89,10 +114,28 @@ void	ft_decision_found(t_g *all, t_stmts *curr_stmt)
 
 				//ft_remove_decision(all, all->stmts->decision[1]); // this is character sent in last
 			} else {
-				
+
 				ft_new_find(all, splits[0]);
 				ft_new_find(all, splits[0]);
 			}
+		}
+		if (all->stmts->operatorSym == '^')
+		{
+			if (split1 == 't' && split2 == 'f')
+			{
+				ft_putendl("1 is T, 2 is F");
+				ft_new_fact(all, all->stmts->decision[1]);
+			}
+			else if (split2 == 't' && split1 == 'f')
+			{
+				ft_putendl("2 is T, 1 is F");
+				ft_new_fact(all, all->stmts->decision[1]);
+			}
+			else if (split1 == 't' && split2 == 't')
+			{
+				ft_putendl("both on ^ is true");
+			}
+
 		}
 		if (all->stmts->operatorSym == 'z')
 		{
@@ -106,15 +149,33 @@ void	ft_decision_found(t_g *all, t_stmts *curr_stmt)
 				ft_new_find(all, splits[0]);
 			}
 		}
-	}
+	} 
 }
 
 void	ft_new_fact(t_g *all, char newf)
 {
-	if (ft_strchr(all->facts, newf) == NULL)
+	/*
+	   if (all->facts[0] == 'i')
+	   ft_putendl("found 'i' in ft_new_fact");
+	   else
+	   {
+	   ft_putstr("all->facts[0]: ");
+	   ft_putchar(all->facts[0]);
+	   ft_putchar('\n');
+	   }
+	   */
+	ft_putendl("this is in ft_new_fact");
+	//ft_putnbr(all->fcount);
+	//ft_putchar('\n');
+	if (all->facts && newf)
 	{
-		all->facts[all->fcount] = newf;
-		all->fcount += 1;
+		if (ft_strchr(all->facts, newf) == NULL)
+		{
+			all->facts[all->fcount] = newf;
+			all->fcount += 1;
+		}
+	} else {
+		ft_putendl("all->facts or newf seems to be null");
 	}
 }
 

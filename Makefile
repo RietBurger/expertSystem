@@ -1,3 +1,6 @@
+#run with this when checking leaks: valgrind --leak-check=summary -v ./expert < marking/test5.txt 
+
+
 NAME = expert
 
 CC = gcc

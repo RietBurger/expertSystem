@@ -8,6 +8,9 @@ char		ft_match(char *temp, t_g *all)
 	fpos = 0;
 	while (fpos <= fmax)
 	{
+		//ft_putstr("this is all->facts[fpos] in ft_match: ");
+		//ft_putchar(all->facts[fpos]);
+		//ft_putchar('\n');
 		j = 0;
 		while (temp[j] == ' ')
 			j++;

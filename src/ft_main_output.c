@@ -11,7 +11,15 @@ void	ft_main_output(t_g *all)
 
 	i = j = 0;
 
+	while (all->stmts->next)
+	{
+		ft_putendl(all->stmts->stmt);
+		all->stmts = all->stmts->next;
+	}
+	
 	ft_putendl("FINAL RESULTS REQUESTED: ");
+	if (all->results)
+	{
 	while (all->results[i])
 	{
 		j = 0;
@@ -26,6 +34,7 @@ void	ft_main_output(t_g *all)
 			j++;
 		}
 		i++;
+	}
 	}
 /*
 	all->resultsc = ft_strlen(all->results);

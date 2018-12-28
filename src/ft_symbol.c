@@ -7,7 +7,7 @@ char	ft_symbol(char *str)
 	char *symfound;
 
 	i = 0;
-	sym = "+|";
+	sym = "+|^";
 
 	while (sym[i])
 	{

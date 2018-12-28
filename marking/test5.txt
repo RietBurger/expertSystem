@@ -4,4 +4,5 @@ C => A
 #=B # A should be true
 #=C # A should be true
 #=BC # A should be true
+
 ?A

@@ -6,11 +6,12 @@ char	*trimstr(char *str)
 	char *retstr;
 
 	i = j = 0;
-	retstr = ft_strdup(str);
+
+	retstr = ft_strnew(ft_strlen(str));
 
 	while (str[i])
 	{
-		if (ft_iswhtspc(str[i]))
+		if (ft_iswhtspc(str[i]) == 1)
 			i++;
 		else
 		{
@@ -19,6 +20,7 @@ char	*trimstr(char *str)
 			j++;
 		}
 	}
+	retstr[j] = '\0';
 	return (retstr);
 }
 
@@ -34,6 +36,8 @@ t_stmts			*read_file(t_g *all)
 	i = 0;
 	while (get_next_line(0, &all->gnl))
 	{
+		//ft_putstr("all->gnl: ");
+		//ft_putendl(all->gnl);
 
 		if (all->gnl[0] != '#')
 		{
@@ -42,21 +46,22 @@ t_stmts			*read_file(t_g *all)
 				head = (t_stmts *)ft_memalloc(sizeof(t_stmts));
 				node = head;
 			}
-			//to trim str... or not..?
-			node->stmt = trimstr(all->gnl);
+			//to trim str... or not..? ONLY ONCE NO ABSOLUTE POSITIONS ARE BEING USED!
+			//node->stmt = trimstr(all->gnl);
+			node->stmt = all->gnl;
 			//temp1 = trimstr(all->gnl);
 			temp = ft_strchr(node->stmt, '#');
-			if (temp == NULL)
-				node->stmt = all->gnl;
-			else
+		//	if (temp == NULL)
+		//		node->stmt = all->gnl;
+			if (temp)
 			{
 				node->stmt = ft_strsplit(node->stmt, '#')[0];
 			}
 			node->nodenr = i; // number the node (for future use)
 
 			// to test
-			//ft_putstr("node->stmt: ");
-			//ft_putendl(node->stmt);
+			ft_putstr("node->stmt: ");
+			ft_putendl(node->stmt);
 			i++;
 
 			node->next = (t_stmts *)ft_memalloc(sizeof(t_stmts));

@@ -12,10 +12,16 @@ void		sort_info(t_g *all)
 	{
 		if (all->stmts->stmt[0] == '=')
 		{
-			all->facts = ft_strsplit(all->stmts->stmt, '=')[0];
-			while (all->facts[fcount])
-				fcount++;
-			all->fcount = fcount;
+			if (ft_isalpha(all->stmts->stmt[1]) == 1)
+			{
+				all->facts = ft_strsplit(all->stmts->stmt, '=')[0];
+				while (all->facts[fcount])
+					fcount++;
+				all->fcount = fcount;
+			} else {
+				ft_putendl("no facts provided...");
+				all->facts = ft_strdup(" ");
+			}
 
 		} else if (all->stmts->stmt[0] == '?') {
 			all->find = ft_strsplit(all->stmts->stmt, '?')[0];
@@ -23,23 +29,27 @@ void		sort_info(t_g *all)
 				findc++;
 			all->results = ft_strsplit(all->stmts->stmt, '?')[0];
 			all->findc = findc;
-		} else if (all->stmts->stmt[0] == '#') {
-			//	ft_putendl("this is a comment");
-		} else {
+		} 
+		/* comments are now being removed in read_file
+		else if (all->stmts->stmt[0] == '#') {
+				ft_putendl("this is a comment");
+		}
+	       */	
+		else {
 			all->stmts->data = ft_strchr(all->stmts->stmt, '=');
 			if (all->stmts->data != NULL)
 			{
 				all->stmts->data = ft_strsplit(all->stmts->stmt, '=')[0];
-			//	ft_putstr("Data: ");
-			//	ft_putendl(all->stmts->data);
+				//	ft_putstr("Data: ");
+				//	ft_putendl(all->stmts->data);
 				all->stmts->decision = ft_strsplit(all->stmts->stmt, '>')[1];
-			//	ft_putstr("Decision: ");
-			//	ft_putendl(all->stmts->decision);
+				//	ft_putstr("Decision: ");
+				//	ft_putendl(all->stmts->decision);
 			}
 		}
 		all->stmts = all->stmts->next;
 	}
 	all->stmts = stmt_head;
-//	ft_putendl("info sorted successfully");
+	ft_putendl("info sorted successfully");
 }
 
